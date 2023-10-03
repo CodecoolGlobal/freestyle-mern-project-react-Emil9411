@@ -1,23 +1,26 @@
-import logo from './logo.svg';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
+import Layout from "./pages/Layout.jsx";
+import Main from "./pages/Main.jsx";
+import Recepies from "./pages/Recepies.jsx";
+import MeatAndSeafood from "./pages/MeatAndSeafood.jsx";
+import Vegetarian from "./pages/Vegetarian.jsx";
+import Cuisine from "./pages/Cuisine.jsx";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>;
+            <Route index element={<Main />} />;
+            <Route path="recepies" element={<Recepies />} />;
+            <Route path="meatAndSeafood" element={<MeatAndSeafood />} />;
+            <Route path="vegetarian" element={<Vegetarian />} />;
+            <Route path="cuisine" element={<Cuisine />} />;
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
