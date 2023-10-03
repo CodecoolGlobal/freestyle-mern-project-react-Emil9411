@@ -20,8 +20,12 @@ export default function Layout(props) {
                     <button>Vegetarian</button>
                 </Link>
 
-                <Link to="/cuisine">
-                    <button>Cuisine</button>
+                <Link to="/dessert">
+                    <button>Dessert</button>
+                </Link>
+
+                <Link to="/foodByCountry">
+                    <button>Food By Country</button>
                 </Link>
 
             </div>

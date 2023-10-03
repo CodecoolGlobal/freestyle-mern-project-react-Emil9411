@@ -6,7 +6,8 @@ import Main from "./pages/Main.jsx";
 import Recipes from "./pages/Recipes.jsx";
 import MeatAndSeafood from "./pages/MeatAndSeafood.jsx";
 import Vegetarian from "./pages/Vegetarian.jsx";
-import Cuisine from "./pages/Cuisine.jsx";
+import Dessert from "./pages/Dessert.jsx";
+import FoodByCountry from "./pages/FoodByCountry.jsx"
 import ClickedRecipe from "./component/ClickedRecipe.js";
 
 function App() {
@@ -27,7 +28,8 @@ function App() {
               setPage={setPage} />} />;
             <Route path="meatAndSeafood" element={<MeatAndSeafood />} />;
             <Route path="vegetarian" element={<Vegetarian />} />;
-            <Route path="cuisine" element={<Cuisine />} />;
+            <Route path="dessert" element={<Dessert />} />;
+            <Route path="foodByCountry" element={<FoodByCountry />} />;
           </Route>
           <Route path="*" element={<ClickedRecipe
             clickedRecipe={clickedRecipe}
