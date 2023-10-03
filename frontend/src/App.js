@@ -9,10 +9,13 @@ import Vegetarian from "./pages/Vegetarian.jsx";
 import Dessert from "./pages/Dessert.jsx";
 import FoodByCountry from "./pages/FoodByCountry.jsx"
 import ClickedRecipe from "./component/ClickedRecipe.js";
+import User from "./pages/User.jsx";
 
 function App() {
   const [clickedRecipe, setClickedRecipe] = useState(null);
   const [page, setPage] = useState(null);
+  const [loginUserData, setLoginUserData] = useState({username: "", password: ""})
+
 
 
   return (
@@ -30,6 +33,9 @@ function App() {
             <Route path="vegetarian" element={<Vegetarian />} />;
             <Route path="dessert" element={<Dessert />} />;
             <Route path="foodByCountry" element={<FoodByCountry />} />;
+            <Route path="user" element={<User
+            loginUserData={loginUserData}
+            setLoginUserData={setLoginUserData} />} />;
           </Route>
           <Route path="*" element={<ClickedRecipe
             clickedRecipe={clickedRecipe}

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-export default function Recepies(props) {
+export default function Recipes(props) {
     const navigate = useNavigate();
 
     const [recipes, setRecipes] = useState(null);
@@ -29,9 +29,15 @@ export default function Recepies(props) {
                         <img src={recipe.strMealThumb} alt={recipe.name} width={"200px"}></img>
                         <br />
                         <button onClick={() => [props.setClickedRecipe(recipe), navigate(`${recipe.name}`), props.setPage("recipes")]}>Recipe</button>
+                        <button>Add to Favorites</button>
                     </section>
                 )
             })}
         </div>
     )
 }
+
+// check if user is logged in, if not, display login button, if yes, display add to favorites button
+// if user is logged in, display user's username, with arrow to dropdown menu, for settings, logout, favorites
+// check in useeffect, fetch user's favorites, compare to recipe id, if match, display 
+// remove from favorites button instead of add to favorites button

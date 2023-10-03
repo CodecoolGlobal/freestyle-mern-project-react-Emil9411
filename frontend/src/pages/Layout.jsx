@@ -28,6 +28,10 @@ export default function Layout(props) {
                     <button>Food By Country</button>
                 </Link>
 
+                <Link to="/user">
+                    <button>Login/Signup</button>
+                </Link>
+
             </div>
             <Outlet />
         </div>
