@@ -1,6 +1,6 @@
 import { Outlet, Link } from "react-router-dom";
 
-export default function Layout() {
+export default function Layout(props) {
     return (
         <div>
             <div className="navBar">
@@ -8,8 +8,8 @@ export default function Layout() {
                     <button>Main page</button>
                 </Link>
 
-                <Link to="/recepies">
-                    <button>Recepies</button>
+                <Link to="/recipes">
+                    <button onClick={() => props.setClickedRecipe(null)}>Recipes</button>
                 </Link>
 
                 <Link to="/meatAndSeafood">
