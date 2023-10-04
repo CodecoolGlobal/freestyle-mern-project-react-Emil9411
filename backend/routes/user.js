@@ -3,6 +3,28 @@ import UserModel from "../db/user.model.js";
 
 const router = express.Router();
 
+router.post("/login", async (req, res) => {
+    try {
+        const {email, password} = req.body;
+        console.log(email, password)
+
+        const user = await UserModel.findOne({email})
+
+        if (!user){
+            return res.status(404).json({error: "User not found"})
+        }
+
+        if (user.password !== password){
+            return res.status(401).json({error: "Invalid password"})
+        }
+
+        res.status(200).json({message: "User logged in successfully", user})
+    } catch (error) {
+        console.error("Error logging in user:", error)
+        res.status(500).json({error: "Internal server error"})
+    }
+})
+
 router.post("/register", async (req, res) => {
     try {
         const {username, email, password} = req.body;
