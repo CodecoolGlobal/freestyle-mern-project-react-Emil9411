@@ -5,33 +5,29 @@ import SearchBar from "../component/SearchBar";
 export default function Recipes(props) {
   const navigate = useNavigate();
 
+  const [allRecipes, setAllRecipes] = useState([]);
   const [recipes, setRecipes] = useState([]);
   const [loadedRecipes, setLoadedRecipes] = useState(12);
-  //   const [pag, setPag] = useState(1);
-  //   const [loading, setLoading] = useState(false);
 
-  //   const initialLoadLimit = 12;
-
-  //   const observer = useRef(null);
-
+  const fetchAllRecipes = async () => {
+    try {
+      const recipesResponse = await fetch(`http://localhost:4000/api/v1`);
+      const recipesResponseJson = await recipesResponse.json();
+      setRecipes(recipesResponseJson);
+      setAllRecipes(recipesResponseJson);
+      console.log(recipesResponseJson);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
-    const fetchAllRecipes = async () => {
-      try {
-        const recipesResponse = await fetch(`http://localhost:4000/api/v1`);
-        const recipesResponseJson = await recipesResponse.json();
-        setRecipes(recipesResponseJson);
-        console.log(recipesResponseJson);
-      } catch (error) {
-        console.log(error);
-      }
-    };
     fetchAllRecipes();
   }, [loadedRecipes]);
 
   const handleScroll = () => {
     if (
-      window.innerHeight + document.documentElement.scrollTop ===
-      document.documentElement.offsetHeight
+      window.innerHeight + Math.round(window.scrollY) >=
+      document.body.offsetHeight
     ) {
       setLoadedRecipes((prevLoadedItems) => prevLoadedItems + 12);
     }
@@ -44,52 +40,14 @@ export default function Recipes(props) {
     };
   }, []);
 
-  // useEffect(() => {
-  //   const fetchRecipes = async () => {
-  //     setLoading(true);
-  //     try {
-  //       const recipesToLoad = allRecipes.slice(
-  //         (pag - 1) * initialLoadLimit,
-  //         pag * initialLoadLimit
-  //       );
-
-  //       setRecipes((prevRecipes) => [...prevRecipes, ...recipesToLoad]);
-  //       setPag((prevPag) => prevPag + 1);
-  //       setLoading(false);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
-
-  //   if (observer.current) {
-  //     observer.current.disconnect();
-  //   }
-
-  //   observer.current = new IntersectionObserver((entries) => {
-  //     if (entries[0].isIntersecting && !loading) {
-  //       fetchRecipes();
-  //     }
-  //   });
-
-  //   observer.current.observe(document.querySelector("#scroll-loader"));
-
-  //   return () => {
-  //     if (observer.current) {
-  //       observer.current.disconnect();
-  //     }
-  //   };
-  // }, [allRecipes, pag, loading]);
-
   //Search
-  const handleSearch = (query) => {
-    if (query === "") {
-      // Reset to all recipes
-      setRecipes(recipes);
+  const handleSearch = (searchedItem) => {
+    if (searchedItem === "") {
+      setRecipes(allRecipes);
     } else {
-      // Filter recipes by name
-      const filteredRecipes = recipes.filter((recipe) =>
-        recipe.name.toLowerCase().includes(query.toLowerCase())
-      );
+      const filteredRecipes = allRecipes.filter((recipe) => {
+        return recipe.name.toLowerCase().includes(searchedItem.toLowerCase());
+      });
       setRecipes(filteredRecipes);
     }
   };
@@ -98,35 +56,36 @@ export default function Recipes(props) {
     <div className="recipesContainer">
       <h1>Recipes</h1>
       <SearchBar handleSearch={handleSearch} />
+      <br /><br />
       <div className="recipeList">
         {recipes.slice(0, loadedRecipes).map((recipe) => {
-          return (<div className="recipe" key={recipe.idMeal}>
-            <div className="recipeName">
-              <h2>{recipe.name}</h2>
+          return (
+            <div className="recipe" key={recipe.idMeal}>
+              <div className="recipeName">
+                <h2>{recipe.name}</h2>
+              </div>
+              <div className="recipeInfo">
+                <img
+                  src={recipe.strMealThumb}
+                  alt={recipe.name}
+                  width={"200px"}
+                ></img>
+                <br />
+                <button
+                  onClick={() => [
+                    props.setClickedRecipe(recipe),
+                    navigate(`${recipe.name}`),
+                    props.setPage("recipes"),
+                  ]}
+                >
+                  Recipe
+                </button>
+                <button>Add to Favorites</button>
+              </div>
             </div>
-            <div className="recipeInfo">
-              <img
-                src={recipe.strMealThumb}
-                alt={recipe.name}
-                width={"200px"}
-              ></img>
-              <br />
-              <button
-                onClick={() => [
-                  props.setClickedRecipe(recipe),
-                  navigate(`${recipe.name}`),
-                  props.setPage("recipes"),
-                ]}
-              >
-                Recipe
-              </button>
-              <button>Add to Favorites</button>
-            </div>
-          </div>)
-})}
+          );
+        })}
       </div>
-      {/* <div id="scroll-loader" style={{ height: "10px" }}></div>
-      {loading && <p>Loading...</p>} */}
     </div>
   );
 }

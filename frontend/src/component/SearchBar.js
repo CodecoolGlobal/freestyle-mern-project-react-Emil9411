@@ -1,11 +1,21 @@
+import React, { useState } from "react";
+
 export default function SearchBar(props) {
+  const [searchValue, setSearchValue] = useState("");
+
+  const handleChanges = (event) => {
+    const newValues = event.target.value;
+    setSearchValue(newValues);
+    props.handleSearch(newValues);
+  }
 
     return (
         <label className="searchBar">
           <input
             type="text"
             placeholder="Search recipe"
-            onChange={(event) => props.handleSearch(event.target.value)}
+            value={searchValue}
+            onChange={handleChanges}
           />
         </label>
       );
