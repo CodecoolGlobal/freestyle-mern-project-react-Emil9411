@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import express from "express";
 import cors from "cors"
 import mealRouter from "./routes/meal.js"
+import userRouter from "./routes/user.js"
 
 const app = express()
 const PORT = 4000
@@ -22,6 +23,7 @@ function logger (req,res, next) {
 app.use(logger)
 
 app.use("/api/v1", mealRouter)
+app.use("/user", userRouter)
 
 async function main() {
     await mongoose.connect(MONGO_URL)
