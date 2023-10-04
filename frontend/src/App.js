@@ -11,15 +11,17 @@ import FoodByCountry from "./pages/FoodByCountry.jsx";
 import ClickedRecipe from "./component/ClickedRecipe.js";
 import User from "./pages/User.jsx";
 import Registration from "./component/Registration.js";
+import LogedInUser from "./pages/LogedInUser.jsx";
 
 function App() {
   const [clickedRecipe, setClickedRecipe] = useState(null);
   const [page, setPage] = useState(null);
-  const [loginUserData, setLoginUserData] = useState({
-    username: "",
-    password: "",
-  });
   const [isRegistrating, setIsRegistrating] = useState(null);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [cPassword, setCPassword] = useState("");
+  const [loggedInUser, setLoggedInUser] = useState("");
 
   return (
     <div className="App">
@@ -31,6 +33,8 @@ function App() {
               <Layout
                 setClickedRecipe={setClickedRecipe}
                 setIsRegistrating={setIsRegistrating}
+                loggedInUser={loggedInUser}
+                setLoggedInUser={setLoggedInUser}
               />
             }
           >
@@ -51,35 +55,59 @@ function App() {
             <Route path="vegetarian" element={<Vegetarian />} />;
             <Route path="dessert" element={<Dessert />} />;
             <Route path="foodByCountry" element={<FoodByCountry />} />;
-            <Route
-              path="logIn"
-              element={
-                <User
-                  loginUserData={loginUserData}
-                  setLoginUserData={setLoginUserData}
-                  isRegistrating={isRegistrating}
-                  setIsRegistrating={setIsRegistrating}
-                  page={page}
-                  setPage={setPage}
-                />
-              }
-            />
-            ;
+          <Route
+            path="logIn"
+            element={
+              <User
+                isRegistrating={isRegistrating}
+                setIsRegistrating={setIsRegistrating}
+                page={page}
+                setPage={setPage}
+                password={password}
+                setPassword={setPassword}
+                email={email}
+                setEmail={setEmail}
+                setLoggedInUser={setLoggedInUser}
+              />
+            }
+          />
+          <Route
+            path="logedInUser"
+            element={
+              <LogedInUser
+              loggedInUser={loggedInUser}
+              setLoggedInUser={setLoggedInUser}
+              />
+            }
+          />
           </Route>
+
+{/* components outside of the layout */}
+          
           <Route
             path="*"
             element={
               <ClickedRecipe
-                clickedRecipe={clickedRecipe}
-                setClickedRecipe={setClickedRecipe}
-                page={page}
+              clickedRecipe={clickedRecipe}
+              setClickedRecipe={setClickedRecipe}
+              page={page}
               />
             }
           />
           <Route
             path="register"
             element={
-              <Registration />
+              <Registration
+              username={username}
+              setUsername={setUsername}
+              password={password}
+              setPassword={setPassword}
+              email={email}
+              setEmail={setEmail}
+              cPassword={cPassword}
+              setCPassword={setCPassword}
+              setIsRegistrating={setIsRegistrating}
+               />
             }
           />
         </Routes>

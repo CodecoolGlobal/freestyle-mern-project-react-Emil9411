@@ -1,34 +1,15 @@
-import { useState } from "react";
-import Registration from "../component/Registration";
 import Login from "../component/Login";
 
 export default function User(props) {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const [cPassword, setCPassword] = useState("");
-
-  return !props.isRegistrating ? (
+  return (
     <Login
       isRegistrating={props.isRegistrating}
       setIsRegistrating={props.setIsRegistrating}
-      setEmail={setEmail}
-      email={email}
-      setPassword={setPassword}
-      password={password}
-
-    />
-  ) : (
-    <Registration
-      setUsername={setUsername}
-      username={username}
-      setPassword={setPassword}
-      cPassword={cPassword}
-      setCPassword={setCPassword}
-      password={password}
-      setEmail={setEmail}
-      email={email}
-      setIsRegistrating={props.setIsRegistrating}
+      setEmail={props.setEmail}
+      email={props.email}
+      setPassword={props.setPassword}
+      password={props.password}
+      setLoggedInUser={props.setLoggedInUser}
     />
   );
 }

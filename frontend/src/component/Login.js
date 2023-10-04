@@ -17,9 +17,12 @@ export default function Login(props) {
     const data = await response.json();
     console.log(data);
 
-    if (data) {
+    if (data.message) {
+      props.setLoggedInUser(data.user.username);
       navigate("/");
       return alert("User logged in successfully");
+    } else {
+      return alert(data.error);
     }
   };
 

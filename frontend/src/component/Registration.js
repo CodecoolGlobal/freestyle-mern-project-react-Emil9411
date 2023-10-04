@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Registration(props) {
+  const navigate = useNavigate();
     
     const [pass, setPass] = useState("");
     const [cPass, setCPass] = useState("");
@@ -23,9 +25,12 @@ export default function Registration(props) {
     const data = await response.json();
     console.log(data);
 
-    if (data){
+    if (data.message) {
         props.setIsRegistrating(null);
+        navigate("/logIn");
         return alert("User registered successfully") 
+    } else {
+        return alert(data.error)
     }
   };
 
@@ -75,6 +80,7 @@ export default function Registration(props) {
         <br />
         <button>Register</button>
       </form>
+        <button onClick={() => navigate("/logIn")}>Back</button>
     </div>
   );
 }
