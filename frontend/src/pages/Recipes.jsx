@@ -1,68 +1,43 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import SearchBar from "../component/SearchBar";
+import SearchBar from "../component/SearchBar.js";
+import handleScroll from "../utility/handleScroll.js";
+import addToFavorites from "../utility/addToFavorites.js";
+import fetchRecipes from "../utility/fetchRecipes.js";
 
 export default function Recipes(props) {
   const navigate = useNavigate();
 
-  const [allRecipes, setAllRecipes] = useState([]);
-  const [recipes, setRecipes] = useState([]);
-  const [loadedRecipes, setLoadedRecipes] = useState(12);
-
-  const fetchAllRecipes = async () => {
-    try {
-      const recipesResponse = await fetch(`http://localhost:4000/api/v1`);
-      const recipesResponseJson = await recipesResponse.json();
-      setRecipes(recipesResponseJson);
-      setAllRecipes(recipesResponseJson);
-      console.log(recipesResponseJson);
-    } catch (error) {
-      console.log(error);
-    }
-  };
   useEffect(() => {
-    fetchAllRecipes();
-  }, [loadedRecipes]);
-
-  const handleScroll = () => {
-    if (
-      window.innerHeight + Math.round(window.scrollY) >=
-      document.body.offsetHeight
-    ) {
-      setLoadedRecipes((prevLoadedItems) => prevLoadedItems + 12);
-    }
-  };
+    fetchRecipes("", props.setRecipes, props.setAllRecipes);
+  }, [props.loadedRecipes, props.setRecipes, props.setAllRecipes]);
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", () => handleScroll(props.setLoadedRecipes));
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", () =>
+        handleScroll(props.setLoadedRecipes)
+      );
     };
-  }, []);
-
-  //Search
-  const handleSearch = (searchedItem) => {
-    if (searchedItem === "") {
-      setRecipes(allRecipes);
-    } else {
-      const filteredRecipes = allRecipes.filter((recipe) => {
-        return recipe.name.toLowerCase().includes(searchedItem.toLowerCase());
-      });
-      setRecipes(filteredRecipes);
-    }
-  };
+  }, [props.setLoadedRecipes]);
 
   return (
     <div className="recipesContainer">
       <h1>Recipes</h1>
-      <SearchBar handleSearch={handleSearch} />
-      <br /><br />
+      <SearchBar
+        setRecipes={props.setRecipes}
+        allRecipes={props.allRecipes}
+        searchValue={props.searchValue}
+        setSearchValue={props.setSearchValue}
+      />
+      <br />
+      <br />
       <div className="recipeList">
-        {recipes.slice(0, loadedRecipes).map((recipe) => {
+        {props.recipes.slice(0, props.loadedRecipes).map((recipe) => {
           return (
             <div className="recipe" key={recipe.idMeal}>
               <div className="recipeName">
-                <h2>{recipe.name}</h2>
+                <h2>{recipe.strMeal}</h2>
               </div>
               <div className="recipeInfo">
                 <img
@@ -74,13 +49,19 @@ export default function Recipes(props) {
                 <button
                   onClick={() => [
                     props.setClickedRecipe(recipe),
-                    navigate(`${recipe.name}`),
+                    navigate(`${recipe.strMeal}`),
                     props.setPage("recipes"),
                   ]}
                 >
                   Recipe
                 </button>
-                <button>Add to Favorites</button>
+                {props.loggedInUser !== "" ? (
+                  <button
+                    onClick={() => addToFavorites(recipe, props.loggedInUser)}
+                  >
+                    Add to Favorites
+                  </button>
+                ) : null}
               </div>
             </div>
           );
@@ -89,8 +70,3 @@ export default function Recipes(props) {
     </div>
   );
 }
-
-// check if user is logged in, if not, display login button, if yes, display add to favorites button
-// if user is logged in, display user's username, with arrow to dropdown menu, for settings, logout, favorites
-// check in useeffect, fetch user's favorites, compare to recipe id, if match, display
-// remove from favorites button instead of add to favorites button

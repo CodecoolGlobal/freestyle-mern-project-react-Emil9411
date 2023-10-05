@@ -59,9 +59,9 @@ router.post("/register", async (req, res) => {
 
 router.post("/add-to-favorites", async (req, res) => {
     try {
-        const {userId, idMeal} = req.body;
+        const {username, idMeal} = req.body;
 
-        const user = await UserModel.findById(userId)
+        const user = await UserModel.findOne({username})
 
         if (!user){
             return  res.status(404).json({error: "User not found"})

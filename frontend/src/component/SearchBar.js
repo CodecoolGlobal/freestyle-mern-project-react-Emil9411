@@ -1,22 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
+import handleSearch from "../utility/handleSearch.js";
 
 export default function SearchBar(props) {
-  const [searchValue, setSearchValue] = useState("");
-
   const handleChanges = (event) => {
     const newValues = event.target.value;
-    setSearchValue(newValues);
-    props.handleSearch(newValues);
-  }
+    props.setSearchValue(newValues);
+    handleSearch(newValues, props.setRecipes, props.allRecipes);
+  };
 
-    return (
-        <label className="searchBar">
-          <input
-            type="text"
-            placeholder="Search recipe"
-            value={searchValue}
-            onChange={handleChanges}
-          />
-        </label>
-      );
+  return (
+    <div>
+      <input
+        type="text"
+        placeholder="Search recipe"
+        class="form-control"
+        value={props.searchValue}
+        onChange={handleChanges}
+      />
+    </div>
+  );
 }
