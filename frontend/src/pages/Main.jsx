@@ -1,5 +1,5 @@
 export default function Main() {
     return (
-        <h1>Yo</h1>
+        <h1>Main Page</h1>
     )
 }

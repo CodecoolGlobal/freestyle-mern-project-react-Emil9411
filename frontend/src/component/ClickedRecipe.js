@@ -8,7 +8,7 @@ export default function ClickedRecipe({ clickedRecipe, setClickedRecipe, page })
 
     return (
         <>
-            <h2>{clickedRecipe.name}</h2>
+            <h2>{clickedRecipe.strMeal}</h2>
             <button onClick={() => [setClickedRecipe(null), navigate(`${page}`)]}>Back</button>
         </>
     )

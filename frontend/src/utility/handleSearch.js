@@ -3,7 +3,7 @@ const handleSearch = (searchedItem, setter, allReci) => {
     setter(allReci);
   } else {
     const filteredRecipes = allReci.filter((recipe) => {
-      return recipe.name.toLowerCase().includes(searchedItem.toLowerCase());
+      return recipe.strMeal.toLowerCase().includes(searchedItem.toLowerCase());
     });
     setter(filteredRecipes);
   }

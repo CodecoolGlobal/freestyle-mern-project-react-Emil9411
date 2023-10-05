@@ -49,7 +49,7 @@ export default function Recipes(props) {
                 <button
                   onClick={() => [
                     props.setClickedRecipe(recipe),
-                    navigate(`${recipe.name}`),
+                    navigate(`${recipe.strMeal}`),
                     props.setPage("recipes"),
                   ]}
                 >

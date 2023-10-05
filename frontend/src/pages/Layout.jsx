@@ -8,13 +8,9 @@ export default function Layout(props) {
   const navigate = useNavigate();
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav id="navBar" className="navbar sticky-top navbar-expand-lg navbar-light bg-light">
         <Link to="/">
-          <img
-            src="https://icons8.com/icon/2797/home"
-            alt="Home"
-            className="homeLogo"
-          />
+          <img src="icons8-home.svg" alt="Home" width="60px" />
         </Link>
 
         <Link to="/recipes">
@@ -27,25 +23,43 @@ export default function Layout(props) {
               Meat & Seafood
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Dropdown.Item onClick={() => navigate("/category/chicken")}>
-                Chicken
-              </Dropdown.Item>
-              <Dropdown.Item onClick={() => navigate("/category/pork")}>
-                Pork
-              </Dropdown.Item>
-              <Dropdown.Item onClick={() => navigate("/category/beef")}>
-                Beef
-              </Dropdown.Item>
-              <Dropdown.Item onClick={() => navigate("/category/lamb")}>
-                Lamb
-              </Dropdown.Item>
-              <Dropdown.Item onClick={() => navigate("/category/goat")}>
-                Goat
-              </Dropdown.Item>
+              <Link to="/category/chicken">
+                <Dropdown.Item onClick={() => navigate("/category/chicken")}>
+                  Chicken
+                </Dropdown.Item>
+              </Link>
+
+              <Link to="/category/pork">
+                <Dropdown.Item onClick={() => navigate("/category/pork")}>
+                  Pork
+                </Dropdown.Item>
+              </Link>
+
+              <Link to="category/beef">
+                <Dropdown.Item onClick={() => navigate("/category/beef")}>
+                  Beef
+                </Dropdown.Item>
+              </Link>
+
+              <Link to="category/lamb">
+                <Dropdown.Item onClick={() => navigate("/category/lamb")}>
+                  Lamb
+                </Dropdown.Item>
+              </Link>
+
+              <Link to="category/goat">
+                <Dropdown.Item onClick={() => navigate("/category/goat")}>
+                  Goat
+                </Dropdown.Item>
+              </Link>
+
               <hr />
-              <Dropdown.Item onClick={() => navigate("/category/seafood")}>
-                Seafood
-              </Dropdown.Item>
+
+              <Link to="category/seafood">
+                <Dropdown.Item onClick={() => navigate("/category/seafood")}>
+                  Seafood
+                </Dropdown.Item>
+              </Link>
             </Dropdown.Menu>
           </Dropdown>
         </Link>
