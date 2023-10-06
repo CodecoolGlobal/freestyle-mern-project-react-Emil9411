@@ -125,3 +125,7 @@ button:hover {
   margin: auto;
   margin-top: 20px;
 }
+
+#navBar {
+  border-bottom: #282c34 solid 2px;
+}
