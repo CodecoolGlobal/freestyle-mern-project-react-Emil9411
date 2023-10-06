@@ -6,7 +6,7 @@ import userRouter from "./routes/user.js"
 
 const app = express()
 const PORT = 4000
-const MONGO_URL = "mongodb+srv://almadiemil94:121212EmQ1994@cluster0.ysu7enh.mongodb.net/test?retryWrites=true&w=majority"
+const MONGO_URL = "mongodb+srv://guest123:guest123@cluster0.ysu7enh.mongodb.net/test?retryWrites=true&w=majority"
 
 app.use(express.json())
 

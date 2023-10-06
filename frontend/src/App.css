@@ -18,7 +18,10 @@
 }
 
 body {
-  background-color: darkolivegreen;
+  background-image: url("https://www.peninsula.com/-/media/misc/pen8/2022-06/misc_202206_dup_2/loiseau-blanc.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 #navBar {
@@ -113,3 +116,12 @@ button:hover {
   margin-top: 30px;
 }
 
+.clickedRecipe {
+  align-items: center;
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 10px;
+  width: 600px;
+  margin: auto;
+  margin-top: 20px;
+}
