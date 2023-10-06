@@ -1,5 +1,5 @@
 export default function Cuisine() {
     return (
-        <h1>Ezek meg itt ilyen olyan országok kajái</h1>
+        <h1>Food by country</h1>
     )
 }
