@@ -34,7 +34,16 @@ export default function Recipes(props) {
       <br />
       <br />
       <div className="recipeList">
-        {props.recipes.slice(0, props.loadedRecipes).map((recipe) => {
+        {props.recipes.filter((recipe) => {
+          if (props.searchValue === "") {
+            return recipe;
+          } else if (
+            recipe.strMeal.toLowerCase().includes(props.searchValue.toLowerCase())
+          ) {
+            return recipe;
+          }
+          return null;
+        }).slice(0, props.loadedRecipes).map((recipe) => {
           return (
             <div className="recipe" key={recipe.idMeal}>
               <div className="recipeName">

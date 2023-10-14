@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  color:white
 }
 
 .App-header {
@@ -18,15 +19,17 @@
 }
 
 body {
-  background-image: url("https://www.peninsula.com/-/media/misc/pen8/2022-06/misc_202206_dup_2/loiseau-blanc.jpg");
+  background-image: url("../public/bgimg.jpg");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100% 100%;
   background-attachment: fixed;
 }
 
 #navBar {
   display: flex;
   justify-content: center;
+  background-color: rgba(249, 249, 249, 0.55);
+
 }
 
 /* /recipes page */
@@ -50,7 +53,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #f9f9f9;
+  background-color: rgba(249, 249, 249, 0.55);
   padding: 15px;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -58,6 +61,7 @@ body {
   width: calc(25% - 20px);
   height: 450px;
   justify-content: center;
+  color: black;
 }
 
 .recipeName {

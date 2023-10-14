@@ -8,9 +8,9 @@ export default function Layout(props) {
   const navigate = useNavigate();
   return (
     <div>
-      <nav id="navBar" className="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+      <nav id="navBar" className="navbar sticky-top navbar-expand-lg navbar-light">
         <Link to="/">
-          <img src="icons8-home.svg" alt="Home" width="60px" />
+          <img src="logo_copy.png" alt="Home" width="60px" />
         </Link>
 
         <Link to="/recipes">

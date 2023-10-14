@@ -1,11 +1,9 @@
 import React from "react";
-import handleSearch from "../utility/handleSearch.js";
 
 export default function SearchBar(props) {
   const handleChanges = (event) => {
     const newValues = event.target.value;
     props.setSearchValue(newValues);
-    handleSearch(newValues, props.setRecipes, props.allRecipes);
   };
 
   return (
@@ -14,7 +12,7 @@ export default function SearchBar(props) {
         type="text"
         placeholder="Search recipe"
         className="form-control"
-        value={props.searchValue}
+        value={props.searchValue? props.searchValue : ""}
         onChange={handleChanges}
       />
     </div>

@@ -1,4 +1,4 @@
-export default function Cuisine() {
+export default function FoodByCountry() {
     return (
         <h1>Food by country</h1>
     )
