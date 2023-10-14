@@ -18,7 +18,7 @@ export default function Login(props) {
     console.log(data);
 
     if (data.message) {
-      props.setLoggedInUser(data.user.username);
+      props.setLoggedInUser(data.user);
       navigate("/");
       return alert("User logged in successfully");
     } else {
@@ -37,6 +37,7 @@ export default function Login(props) {
           type="email"
           id="email"
           onChange={(event) => props.setEmail(event.target.value)}
+          autoComplete="off"
         />
         <br />
         <label htmlFor="password">Password</label>

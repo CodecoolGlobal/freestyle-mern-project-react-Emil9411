@@ -10,7 +10,7 @@ import FoodByCountry from "./pages/FoodByCountry.jsx";
 import ClickedRecipe from "./component/ClickedRecipe.js";
 import User from "./pages/User.jsx";
 import Registration from "./component/Registration.js";
-import LogedInUser from "./pages/LogedInUser.jsx";
+import LoggedInUser from "./pages/LoggedInUser.jsx";
 
 import Chicken from "./pages/FoodCategories/Chicken.jsx";
 import Pork from "./pages/FoodCategories/Pork.jsx";
@@ -30,7 +30,7 @@ function App() {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [cPassword, setCPassword] = useState("");
-  const [loggedInUser, setLoggedInUser] = useState("");
+  const [loggedInUser, setLoggedInUser] = useState(null);
 
   const [allRecipes, setAllRecipes] = useState([]);
   const [recipes, setRecipes] = useState([]);
@@ -61,6 +61,7 @@ function App() {
                   clickedRecipe={clickedRecipe}
                   setPage={setPage}
                   loggedInUser={loggedInUser}
+                  setLoggedInUser={setLoggedInUser}
                   searchValue={searchValue}
                   setSearchValue={setSearchValue}
                   recipes={recipes}
@@ -93,9 +94,9 @@ function App() {
               }
             />
             <Route
-              path="logedInUser"
+              path="loggedInUser"
               element={
-                <LogedInUser
+                <LoggedInUser
                   loggedInUser={loggedInUser}
                   setLoggedInUser={setLoggedInUser}
                 />

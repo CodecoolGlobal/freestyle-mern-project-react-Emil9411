@@ -37,7 +37,7 @@ export default function Registration(props) {
   return (
     <div className="regContainer">
       <h1>Register</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} autoComplete="off">
         <label htmlFor="username">Username</label>
         <br />
         <input

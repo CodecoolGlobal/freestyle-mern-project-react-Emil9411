@@ -3,11 +3,12 @@ import express from "express";
 import cors from "cors"
 import mealRouter from "./routes/meal.js"
 import userRouter from "./routes/user.js"
+import dotenv from "dotenv";
+dotenv.config()
+
+const {MONGO_URL, PORT = 4000} = process.env
 
 const app = express()
-const PORT = 4000
-const MONGO_URL = "mongodb+srv://guest123:guest123@cluster0.ysu7enh.mongodb.net/test?retryWrites=true&w=majority"
-
 app.use(express.json())
 
 app.use(cors({

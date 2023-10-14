@@ -76,15 +76,15 @@ export default function Layout(props) {
           <button>Food By Country</button>
         </Link>
 
-        {props.loggedInUser === "" ? (
+        {!props.loggedInUser ? (
           <Link to="/logIn">
             <button onClick={() => props.setIsRegistrating(null)}>
               Login/Signup
             </button>
           </Link>
         ) : (
-          <Link to="/logedInUser">
-            <button>{props.loggedInUser}</button>
+          <Link to="/loggedInUser">
+            <button>{props.loggedInUser.username}</button>
           </Link>
         )}
       </nav>

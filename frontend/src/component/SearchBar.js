@@ -13,7 +13,7 @@ export default function SearchBar(props) {
       <input
         type="text"
         placeholder="Search recipe"
-        class="form-control"
+        className="form-control"
         value={props.searchValue}
         onChange={handleChanges}
       />

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import SearchBar from "../component/SearchBar.js";
 import handleScroll from "../utility/handleScroll.js";
 import addToFavorites from "../utility/addToFavorites.js";
+import removeFromFavorites from "../utility/removeFromFavorites.js";
 import fetchRecipes from "../utility/fetchRecipes.js";
 
 export default function Recipes(props) {
@@ -10,7 +11,7 @@ export default function Recipes(props) {
 
   useEffect(() => {
     fetchRecipes("", props.setRecipes, props.setAllRecipes);
-  }, [props.loadedRecipes, props.setRecipes, props.setAllRecipes]);
+  }, [props.loadedRecipes, props.setRecipes, props.setAllRecipes, props.loggedInUser]);
 
   useEffect(() => {
     window.addEventListener("scroll", () => handleScroll(props.setLoadedRecipes));
@@ -55,11 +56,17 @@ export default function Recipes(props) {
                 >
                   Recipe
                 </button>
-                {props.loggedInUser !== "" ? (
+                {props.loggedInUser && !props.loggedInUser.favorites.includes(recipe._id) ? (
                   <button
-                    onClick={() => addToFavorites(recipe, props.loggedInUser)}
+                    onClick={() => addToFavorites(recipe, props.loggedInUser.username, props.setLoggedInUser)}
                   >
                     Add to Favorites
+                  </button>
+                ) : props.loggedInUser && props.loggedInUser.favorites.includes(recipe._id) ? (
+                  <button
+                    onClick={() => removeFromFavorites(recipe, props.loggedInUser.username, props.setLoggedInUser)}
+                  >
+                    Remove from Favorites
                   </button>
                 ) : null}
               </div>
