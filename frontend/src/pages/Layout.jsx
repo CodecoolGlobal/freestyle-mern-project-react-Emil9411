@@ -14,7 +14,7 @@ export default function Layout(props) {
         </Link>
 
         <Link to="/recipes">
-          <button onClick={() => props.setClickedRecipe(null)}>Recipes</button>
+          <button onClick={() => props.setClickedRecipe(null)}>All Recipes</button>
         </Link>
 
         <Link>
@@ -64,12 +64,74 @@ export default function Layout(props) {
           </Dropdown>
         </Link>
 
-        <Link to="/vegetarian">
-          <button>Vegetarian</button>
+        {/*same dropdown as above but for vegetarian and vegan */}
+
+        <Link>
+          <Dropdown>
+            <Dropdown.Toggle variant="primary" id="dropdown-basic">
+              Vegetarian & Vegan
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Link to="/category/vegetarian">
+                <Dropdown.Item onClick={() => navigate("/category/vegetarian")}>
+                  Vegetarian
+                </Dropdown.Item>
+              </Link>
+
+              <Link to="/category/vegan">
+                <Dropdown.Item onClick={() => navigate("/category/vegan")}>
+                  Vegan
+                </Dropdown.Item>
+              </Link>
+            </Dropdown.Menu>
+          </Dropdown>
         </Link>
 
-        <Link to="/dessert">
-          <button>Dessert</button>
+        {/* dropdown to "Mixed Culinary Creations", including the following: breakfast, miscellaneous, pasta, dessert, side, starter. */}
+
+        <Link>
+          <Dropdown>
+            <Dropdown.Toggle variant="primary" id="dropdown-basic">
+              Mixed Culinary Creations
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Link to="/category/breakfast">
+                <Dropdown.Item onClick={() => navigate("/category/breakfast")}>
+                  Breakfast
+                </Dropdown.Item>
+              </Link>
+
+              <Link to="/category/miscellaneous">
+                <Dropdown.Item onClick={() => navigate("/category/miscellaneous")}>
+                  Miscellaneous
+                </Dropdown.Item>
+              </Link>
+
+              <Link to="/category/pasta">
+                <Dropdown.Item onClick={() => navigate("/category/pasta")}>
+                  Pasta
+                </Dropdown.Item>
+              </Link>
+
+              <Link to="/category/dessert">
+                <Dropdown.Item onClick={() => navigate("/category/dessert")}>
+                  Dessert
+                </Dropdown.Item>
+              </Link>
+
+              <Link to="/category/side">
+                <Dropdown.Item onClick={() => navigate("/category/side")}>
+                  Side
+                </Dropdown.Item>
+              </Link>
+
+              <Link to="/category/starter">
+                <Dropdown.Item onClick={() => navigate("/category/starter")}>
+                  Starter
+                </Dropdown.Item>
+              </Link>
+            </Dropdown.Menu>
+          </Dropdown>
         </Link>
 
         <Link to="/foodByCountry">
@@ -78,9 +140,7 @@ export default function Layout(props) {
 
         {!props.loggedInUser ? (
           <Link to="/logIn">
-            <button onClick={() => props.setIsRegistrating(null)}>
-              Login/Signup
-            </button>
+            <button onClick={() => props.setIsRegistrating(null)}>Login/Signup</button>
           </Link>
         ) : (
           <Link to="/loggedInUser">

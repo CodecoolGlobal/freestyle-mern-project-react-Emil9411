@@ -1,7 +1,7 @@
-const fetchRecipes = async (string,setRecipes,setAllRecipes) => {
+const fetchRecipes = async (string, setRecipes, setAllRecipes) => {
     try {
       if (!string) {
-        const recipesResponse = await fetch(`http://localhost:4000/api/v1`);
+        const recipesResponse = await fetch(`http://localhost:4000/api/v1/meals`);
         const recipesResponseJson = await recipesResponse.json();
         setRecipes(recipesResponseJson);
         setAllRecipes(recipesResponseJson);

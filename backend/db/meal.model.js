@@ -5,6 +5,7 @@ const MealSchema = mongoose.Schema({
     strMeal: String,
     strCategory: String,
     strArea: String,
+    strAreaCode: String,
     strInstructions: String,
     strMealThumb: String,
     strTags: String,

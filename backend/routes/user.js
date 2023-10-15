@@ -4,13 +4,13 @@ import bcrypt from "bcrypt";
 
 const router = express.Router();
 
-router.get("/user/:username", async (req, res) => {
+router.get("/user/:_id", async (req, res) => {
   try {
-    const user = await UserModel.findOne({ username: req.params.username });
+    const user = await UserModel.findOne({ _id: req.params._id });
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
-    return res.status(200).json({ user });
+    return res.status(200).json(user);
   } catch (error) {
     console.error("Error getting user:", error);
     res.status(500).json({ error: "Internal server error" });

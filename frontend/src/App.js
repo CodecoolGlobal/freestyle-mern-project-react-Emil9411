@@ -18,6 +18,12 @@ import Beef from "./pages/FoodCategories/Beef.jsx";
 import Lamb from "./pages/FoodCategories/Lamb.jsx";
 import Goat from "./pages/FoodCategories/Goat.jsx";
 import Seafood from "./pages/FoodCategories/Seafood.jsx";
+import Breakfast from "./pages/FoodCategories/Breakfast.jsx";
+import Miscellaneous from "./pages/FoodCategories/Miscellaneous.jsx";
+import Pasta from "./pages/FoodCategories/Pasta.jsx";
+import Side from "./pages/FoodCategories/Side.jsx";
+import Starter from "./pages/FoodCategories/Starter.jsx";
+import Vegan from "./pages/FoodCategories/Vegan.jsx";
 
 function App() {
   const [page, setPage] = useState(null);
@@ -35,6 +41,7 @@ function App() {
   const [allRecipes, setAllRecipes] = useState([]);
   const [recipes, setRecipes] = useState([]);
   const [loadedRecipes, setLoadedRecipes] = useState(12);
+  const [countries, setCountries] = useState([]);
 
   return (
     <div className="App">
@@ -70,13 +77,26 @@ function App() {
                   setAllRecipes={setAllRecipes}
                   loadedRecipes={loadedRecipes}
                   setLoadedRecipes={setLoadedRecipes}
+                  countries={countries}
+                  setCountries={setCountries}
                 />
               }
             />
             ;
-            <Route path="vegetarian" element={<Vegetarian />} />;
-            <Route path="dessert" element={<Dessert />} />;
-            <Route path="foodByCountry" element={<FoodByCountry />} />;
+            <Route
+              path="foodByCountry"
+              element={
+                <FoodByCountry
+                  countries={countries}
+                  setCountries={setCountries}
+                  recipes={recipes}
+                  setRecipes={setRecipes}
+                  allRecipes={allRecipes}
+                  setAllRecipes={setAllRecipes}
+                />
+              }
+            />
+            ;
             <Route
               path="logIn"
               element={
@@ -99,13 +119,13 @@ function App() {
                 <LoggedInUser
                   loggedInUser={loggedInUser}
                   setLoggedInUser={setLoggedInUser}
+                  setClickedRecipe={setClickedRecipe}
+                  setPage={setPage}
                 />
               }
             />
           </Route>
-
           {/* components outside of the layout */}
-
           <Route
             path="*"
             element={
@@ -132,15 +152,21 @@ function App() {
               />
             }
           />
-
           {/* Meat&Seafood */}
-
           <Route path="category/chicken" element={<Chicken />} />
           <Route path="category/pork" element={<Pork />} />
           <Route path="category/beef" element={<Beef />} />
           <Route path="category/lamb" element={<Lamb />} />
           <Route path="category/goat" element={<Goat />} />
           <Route path="category/seafood" element={<Seafood />} />
+          <Route path="category/breakfast" element={<Breakfast />} />
+          <Route path="category/miscellaneous" element={<Miscellaneous />} />
+          <Route path="category/pasta" element={<Pasta />} />
+          <Route path="category/side" element={<Side />} />
+          <Route path="category/starter" element={<Starter />} />
+          <Route path="category/vegan" element={<Vegan />} />
+          <Route path="vegetarian" element={<Vegetarian />} />;
+          <Route path="dessert" element={<Dessert />} />;
         </Routes>
       </BrowserRouter>
     </div>
