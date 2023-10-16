@@ -65,7 +65,7 @@ router.get("/countries", async (req, res) => {
 router.get("/country/:strArea", async (req, res) => {
   try {
     const strArea = req.params.strArea;
-    const meals = await MealModel.find({ strArea });
+    const meals = await MealModel.find({ strArea }).sort({ strMeal: 1 });
     if (meals.length > 0) {
       res.json(meals);
     } else {

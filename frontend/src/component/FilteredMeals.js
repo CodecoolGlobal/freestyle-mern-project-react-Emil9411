@@ -17,7 +17,7 @@ export function FilteredMeals(props) {
       setFilteredMeals(responseJSON);
     };
     fetchFilteredMeals();
-  }, []);
+  }, [props.category]);
 
   return (
     <div className="recipesContainer">

@@ -8,6 +8,7 @@ import Vegetarian from "./pages/FoodCategories/Vegetarian.jsx";
 import Dessert from "./pages/FoodCategories/Dessert.jsx";
 import FoodByCountry from "./pages/FoodByCountry.jsx";
 import ClickedRecipe from "./component/ClickedRecipe.js";
+import ClickedCountry from "./component/ClickedCountry.js";
 import User from "./pages/User.jsx";
 import Registration from "./component/Registration.js";
 import LoggedInUser from "./pages/LoggedInUser.jsx";
@@ -42,6 +43,8 @@ function App() {
   const [recipes, setRecipes] = useState([]);
   const [loadedRecipes, setLoadedRecipes] = useState(12);
   const [countries, setCountries] = useState([]);
+  const [clickedCountry, setClickedCountry] = useState(null);
+
 
   return (
     <div className="App">
@@ -93,6 +96,8 @@ function App() {
                   setRecipes={setRecipes}
                   allRecipes={allRecipes}
                   setAllRecipes={setAllRecipes}
+                  setClickedCountry={setClickedCountry}
+                  setPage={setPage}
                 />
               }
             />
@@ -124,18 +129,17 @@ function App() {
                 />
               }
             />
-          </Route>
           {/* components outside of the layout */}
           <Route
             path="*"
             element={
               <ClickedRecipe
-                clickedRecipe={clickedRecipe}
-                setClickedRecipe={setClickedRecipe}
+              clickedRecipe={clickedRecipe}
+              setClickedRecipe={setClickedRecipe}
                 page={page}
               />
             }
-          />
+            />
           <Route
             path="register"
             element={
@@ -149,9 +153,9 @@ function App() {
                 cPassword={cPassword}
                 setCPassword={setCPassword}
                 setIsRegistrating={setIsRegistrating}
+                />
+              }
               />
-            }
-          />
           {/* Meat&Seafood */}
           <Route path="category/chicken" element={<Chicken />} />
           <Route path="category/pork" element={<Pork />} />
@@ -160,7 +164,7 @@ function App() {
             element={
               <Beef setClickedRecipe={setClickedRecipe} setPage={setPage} />
             }
-          />
+            />
           <Route path="category/lamb" element={<Lamb />} />
           <Route path="category/goat" element={<Goat />} />
           <Route path="category/seafood" element={<Seafood />} />
@@ -172,6 +176,19 @@ function App() {
           <Route path="category/vegan" element={<Vegan />} />
           <Route path="vegetarian" element={<Vegetarian />} />;
           <Route path="dessert" element={<Dessert />} />;
+          <Route 
+            path={"foodByCountry/:clickedCountry"}
+            element={
+              <ClickedCountry
+              clickedCountry={clickedCountry}
+              setClickedCountry={setClickedCountry}
+              page={page}
+              setPage={setPage}
+              setClickedRecipe={setClickedRecipe}
+              />
+            }
+            />
+            </Route>
         </Routes>
       </BrowserRouter>
     </div>

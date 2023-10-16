@@ -79,7 +79,11 @@ router.patch("/add-to-favorites", async (req, res) => {
   try {
     const { username, _id } = req.body;
 
-    const user = await UserModel.findOneAndUpdate({ username }, { $addToSet: { favorites: _id } }, { new: true });
+    const user = await UserModel.findOneAndUpdate(
+      { username },
+      { $addToSet: { favorites: _id } },
+      { new: true }
+    );
 
     if (!user) {
       return res.status(404).json({ error: "User not found" });
@@ -96,7 +100,11 @@ router.patch("/remove-from-favorites", async (req, res) => {
   try {
     const { username, _id } = req.body;
 
-    const user = await UserModel.findOneAndUpdate({ username }, { $pull: { favorites: _id } }, { new: true });
+    const user = await UserModel.findOneAndUpdate(
+      { username },
+      { $pull: { favorites: _id } },
+      { new: true }
+    );
 
     if (!user) {
       return res.status(404).json({ error: "User not found" });
