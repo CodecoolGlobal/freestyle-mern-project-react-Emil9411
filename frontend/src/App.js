@@ -155,7 +155,12 @@ function App() {
           {/* Meat&Seafood */}
           <Route path="category/chicken" element={<Chicken />} />
           <Route path="category/pork" element={<Pork />} />
-          <Route path="category/beef" element={<Beef />} />
+          <Route
+            path="category/beef"
+            element={
+              <Beef setClickedRecipe={setClickedRecipe} setPage={setPage} />
+            }
+          />
           <Route path="category/lamb" element={<Lamb />} />
           <Route path="category/goat" element={<Goat />} />
           <Route path="category/seafood" element={<Seafood />} />
