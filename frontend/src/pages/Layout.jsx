@@ -139,11 +139,11 @@ export default function Layout(props) {
         </Link>
 
         {!props.loggedInUser ? (
-          <Link to="/logIn">
+          <Link to="/login">
             <button onClick={() => props.setIsRegistrating(null)}>Login/Signup</button>
           </Link>
         ) : (
-          <Link to="/loggedInUser">
+          <Link to="/user">
             <button>{props.loggedInUser.username}</button>
           </Link>
         )}

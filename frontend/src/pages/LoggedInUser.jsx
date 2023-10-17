@@ -34,6 +34,9 @@ export default function LoggedInUser(props) {
   return (
     <div>
       <h1>{userData.username}</h1>
+      <br />
+      <button onClick={() => navigate("/user/edit")}>Edit</button>
+      <br />
       <h2>Favorites:</h2>
       <div className="recipeList">
         {userFavorites

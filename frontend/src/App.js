@@ -12,6 +12,7 @@ import ClickedCountry from "./component/ClickedCountry.js";
 import User from "./pages/User.jsx";
 import Registration from "./component/Registration.js";
 import LoggedInUser from "./pages/LoggedInUser.jsx";
+import UserDataEdit from "./component/UserDataEdit.js";
 
 import Chicken from "./pages/FoodCategories/Chicken.jsx";
 import Pork from "./pages/FoodCategories/Pork.jsx";
@@ -44,7 +45,6 @@ function App() {
   const [loadedRecipes, setLoadedRecipes] = useState(12);
   const [countries, setCountries] = useState([]);
   const [clickedCountry, setClickedCountry] = useState(null);
-
 
   return (
     <div className="App">
@@ -103,7 +103,7 @@ function App() {
             />
             ;
             <Route
-              path="logIn"
+              path="login"
               element={
                 <User
                   isRegistrating={isRegistrating}
@@ -119,7 +119,7 @@ function App() {
               }
             />
             <Route
-              path="loggedInUser"
+              path="user"
               element={
                 <LoggedInUser
                   loggedInUser={loggedInUser}
@@ -129,66 +129,293 @@ function App() {
                 />
               }
             />
-          {/* components outside of the layout */}
-          <Route
-            path="*"
+            <Route
+            path="user/edit"
             element={
-              <ClickedRecipe
-              clickedRecipe={clickedRecipe}
-              setClickedRecipe={setClickedRecipe}
-                page={page}
-              />
-            }
-            />
-          <Route
-            path="register"
-            element={
-              <Registration
-                username={username}
+              <UserDataEdit
+                loggedInUser={loggedInUser}
+                setLoggedInUser={setLoggedInUser}
                 setUsername={setUsername}
-                password={password}
                 setPassword={setPassword}
-                email={email}
                 setEmail={setEmail}
-                cPassword={cPassword}
                 setCPassword={setCPassword}
                 setIsRegistrating={setIsRegistrating}
+              />
+            }
+          />
+            <Route
+              path="*"
+              element={
+                <ClickedRecipe
+                  clickedRecipe={clickedRecipe}
+                  setClickedRecipe={setClickedRecipe}
+                  page={page}
                 />
               }
-              />
-          {/* Meat&Seafood */}
-          <Route path="category/chicken" element={<Chicken />} />
-          <Route path="category/pork" element={<Pork />} />
-          <Route
-            path="category/beef"
-            element={
-              <Beef setClickedRecipe={setClickedRecipe} setPage={setPage} />
-            }
             />
-          <Route path="category/lamb" element={<Lamb />} />
-          <Route path="category/goat" element={<Goat />} />
-          <Route path="category/seafood" element={<Seafood />} />
-          <Route path="category/breakfast" element={<Breakfast />} />
-          <Route path="category/miscellaneous" element={<Miscellaneous />} />
-          <Route path="category/pasta" element={<Pasta />} />
-          <Route path="category/side" element={<Side />} />
-          <Route path="category/starter" element={<Starter />} />
-          <Route path="category/vegan" element={<Vegan />} />
-          <Route path="vegetarian" element={<Vegetarian />} />;
-          <Route path="dessert" element={<Dessert />} />;
-          <Route 
-            path={"foodByCountry/:clickedCountry"}
-            element={
-              <ClickedCountry
-              clickedCountry={clickedCountry}
-              setClickedCountry={setClickedCountry}
-              page={page}
-              setPage={setPage}
-              setClickedRecipe={setClickedRecipe}
-              />
-            }
+            <Route
+              path="register"
+              element={
+                <Registration
+                  loggedInUser={loggedInUser}
+                  setLoggedInUser={setLoggedInUser}
+                  username={username}
+                  setUsername={setUsername}
+                  password={password}
+                  setPassword={setPassword}
+                  email={email}
+                  setEmail={setEmail}
+                  cPassword={cPassword}
+                  setCPassword={setCPassword}
+                  setIsRegistrating={setIsRegistrating}
+                />
+              }
             />
-            </Route>
+            <Route
+              path="category/chicken"
+              element={
+                <Chicken
+                  loggedInUser={loggedInUser}
+                  setLoggedInUser={setLoggedInUser}
+                  setClickedRecipe={setClickedRecipe}
+                  setPage={setPage}
+                  searchValue={searchValue}
+                  setSearchValue={setSearchValue}
+                  recipes={recipes}
+                  setRecipes={setRecipes}
+                  allRecipes={allRecipes}
+                />
+              }
+            />
+            <Route
+              path="category/pork"
+              element={
+                <Pork
+                  loggedInUser={loggedInUser}
+                  setLoggedInUser={setLoggedInUser}
+                  setClickedRecipe={setClickedRecipe}
+                  setPage={setPage}
+                  searchValue={searchValue}
+                  setSearchValue={setSearchValue}
+                  recipes={recipes}
+                  setRecipes={setRecipes}
+                  allRecipes={allRecipes}
+                />
+              }
+            />
+            <Route
+              path="category/beef"
+              element={
+                <Beef
+                  loggedInUser={loggedInUser}
+                  setLoggedInUser={setLoggedInUser}
+                  setClickedRecipe={setClickedRecipe}
+                  setPage={setPage}
+                  searchValue={searchValue}
+                  setSearchValue={setSearchValue}
+                  recipes={recipes}
+                  setRecipes={setRecipes}
+                  allRecipes={allRecipes}
+                />
+              }
+            />
+            <Route
+              path="category/lamb"
+              element={
+                <Lamb
+                  loggedInUser={loggedInUser}
+                  setLoggedInUser={setLoggedInUser}
+                  setClickedRecipe={setClickedRecipe}
+                  setPage={setPage}
+                  searchValue={searchValue}
+                  setSearchValue={setSearchValue}
+                  recipes={recipes}
+                  setRecipes={setRecipes}
+                  allRecipes={allRecipes}
+                />
+              }
+            />
+            <Route
+              path="category/goat"
+              element={
+                <Goat
+                  loggedInUser={loggedInUser}
+                  setLoggedInUser={setLoggedInUser}
+                  setClickedRecipe={setClickedRecipe}
+                  setPage={setPage}
+                  searchValue={searchValue}
+                  setSearchValue={setSearchValue}
+                  recipes={recipes}
+                  setRecipes={setRecipes}
+                  allRecipes={allRecipes}
+                />
+              }
+            />
+            <Route
+              path="category/seafood"
+              element={
+                <Seafood
+                  loggedInUser={loggedInUser}
+                  setLoggedInUser={setLoggedInUser}
+                  setClickedRecipe={setClickedRecipe}
+                  setPage={setPage}
+                  searchValue={searchValue}
+                  setSearchValue={setSearchValue}
+                  recipes={recipes}
+                  setRecipes={setRecipes}
+                  allRecipes={allRecipes}
+                />
+              }
+            />
+            <Route
+              path="category/breakfast"
+              element={
+                <Breakfast
+                  loggedInUser={loggedInUser}
+                  setLoggedInUser={setLoggedInUser}
+                  setClickedRecipe={setClickedRecipe}
+                  setPage={setPage}
+                  searchValue={searchValue}
+                  setSearchValue={setSearchValue}
+                  recipes={recipes}
+                  setRecipes={setRecipes}
+                  allRecipes={allRecipes}
+                />
+              }
+            />
+            <Route
+              path="category/miscellaneous"
+              element={
+                <Miscellaneous
+                  loggedInUser={loggedInUser}
+                  setLoggedInUser={setLoggedInUser}
+                  setClickedRecipe={setClickedRecipe}
+                  setPage={setPage}
+                  searchValue={searchValue}
+                  setSearchValue={setSearchValue}
+                  recipes={recipes}
+                  setRecipes={setRecipes}
+                  allRecipes={allRecipes}
+                />
+              }
+            />
+            <Route
+              path="category/pasta"
+              element={
+                <Pasta
+                  loggedInUser={loggedInUser}
+                  setLoggedInUser={setLoggedInUser}
+                  setClickedRecipe={setClickedRecipe}
+                  setPage={setPage}
+                  searchValue={searchValue}
+                  setSearchValue={setSearchValue}
+                  recipes={recipes}
+                  setRecipes={setRecipes}
+                  allRecipes={allRecipes}
+                />
+              }
+            />
+            <Route
+              path="category/side"
+              element={
+                <Side
+                  loggedInUser={loggedInUser}
+                  setLoggedInUser={setLoggedInUser}
+                  setClickedRecipe={setClickedRecipe}
+                  setPage={setPage}
+                  searchValue={searchValue}
+                  setSearchValue={setSearchValue}
+                  recipes={recipes}
+                  setRecipes={setRecipes}
+                  allRecipes={allRecipes}
+                />
+              }
+            />
+            <Route
+              path="category/starter"
+              element={
+                <Starter
+                  loggedInUser={loggedInUser}
+                  setLoggedInUser={setLoggedInUser}
+                  setClickedRecipe={setClickedRecipe}
+                  setPage={setPage}
+                  searchValue={searchValue}
+                  setSearchValue={setSearchValue}
+                  recipes={recipes}
+                  setRecipes={setRecipes}
+                  allRecipes={allRecipes}
+                />
+              }
+            />
+            <Route
+              path="category/vegan"
+              element={
+                <Vegan
+                  loggedInUser={loggedInUser}
+                  setLoggedInUser={setLoggedInUser}
+                  setClickedRecipe={setClickedRecipe}
+                  setPage={setPage}
+                  searchValue={searchValue}
+                  setSearchValue={setSearchValue}
+                  recipes={recipes}
+                  setRecipes={setRecipes}
+                  allRecipes={allRecipes}
+                />
+              }
+            />
+            <Route
+              path="category/vegetarian"
+              element={
+                <Vegetarian
+                  loggedInUser={loggedInUser}
+                  setLoggedInUser={setLoggedInUser}
+                  setClickedRecipe={setClickedRecipe}
+                  setPage={setPage}
+                  searchValue={searchValue}
+                  setSearchValue={setSearchValue}
+                  recipes={recipes}
+                  setRecipes={setRecipes}
+                  allRecipes={allRecipes}
+                />
+              }
+            />
+            ;
+            <Route
+              path="category/dessert"
+              element={
+                <Dessert
+                  loggedInUser={loggedInUser}
+                  setLoggedInUser={setLoggedInUser}
+                  setClickedRecipe={setClickedRecipe}
+                  setPage={setPage}
+                  searchValue={searchValue}
+                  setSearchValue={setSearchValue}
+                  recipes={recipes}
+                  setRecipes={setRecipes}
+                  allRecipes={allRecipes}
+                />
+              }
+            />
+            ;
+            <Route
+              path={"foodByCountry/:clickedCountry"}
+              element={
+                <ClickedCountry
+                  loggedInUser={loggedInUser}
+                  setLoggedInUser={setLoggedInUser}
+                  clickedCountry={clickedCountry}
+                  setClickedCountry={setClickedCountry}
+                  page={page}
+                  setPage={setPage}
+                  setClickedRecipe={setClickedRecipe}
+                  setRecipes={setRecipes}
+                  allRecipes={allRecipes}
+                  searchValue={searchValue}
+                  setSearchValue={setSearchValue}
+                />
+              }
+            />
+          </Route>
         </Routes>
       </BrowserRouter>
     </div>

@@ -117,4 +117,27 @@ router.patch("/remove-from-favorites", async (req, res) => {
   }
 });
 
+router.patch("/update-user/:_id", async (req, res) => {
+  try {
+    const { username, email, password } = req.body;
+
+    let hashedPassword = await bcrypt.hash(password, 10);
+
+    const user = await UserModel.findOneAndUpdate(
+      { _id: req.params._id },
+      { username, email, password: hashedPassword },
+      { new: true }
+    );
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    res.status(200).json({ message: "User updated successfully", user });
+  } catch (error) {
+    console.error("Error updating user:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 export default router;

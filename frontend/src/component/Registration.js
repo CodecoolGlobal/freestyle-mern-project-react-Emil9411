@@ -27,7 +27,7 @@ export default function Registration(props) {
 
     if (data.message) {
         props.setIsRegistrating(null);
-        navigate("/logIn");
+        navigate("/login");
         return alert("User registered successfully") 
     } else {
         return alert(data.error)
@@ -80,7 +80,7 @@ export default function Registration(props) {
         <br />
         <button>Register</button>
       </form>
-        <button onClick={() => navigate("/logIn")}>Back</button>
+        <button onClick={() => navigate("/login")}>Back</button>
     </div>
   );
 }

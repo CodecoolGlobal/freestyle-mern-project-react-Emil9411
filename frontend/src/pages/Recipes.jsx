@@ -22,6 +22,10 @@ export default function Recipes(props) {
     };
   }, [props.setLoadedRecipes]);
 
+  useEffect(() => {
+    props.setSearchValue("");
+  }, []);
+
   return (
     <div className="recipesContainer">
       <h1>Recipes</h1>

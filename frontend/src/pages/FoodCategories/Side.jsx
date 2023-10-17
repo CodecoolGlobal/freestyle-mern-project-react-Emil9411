@@ -1,5 +1,18 @@
-export default function Side() {
-    return (
-        <h1>Side</h1>
-    )
+import { FilteredMeals } from "../../component/FilteredMeals.js";
+
+export default function Side(props) {
+  return (
+    <FilteredMeals
+      category={"side"}
+      setClickedRecipe={props.setClickedRecipe}
+      setPage={props.setPage}
+      searchValue={props.searchValue}
+      setSearchValue={props.setSearchValue}
+      recipes={props.recipes}
+      setRecipes={props.setRecipes}
+      allRecipes={props.allRecipes}
+      loggedInUser={props.loggedInUser}
+      setLoggedInUser={props.setLoggedInUser}
+    />
+  );
 }
