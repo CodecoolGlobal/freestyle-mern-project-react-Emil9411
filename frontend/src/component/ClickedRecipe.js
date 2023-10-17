@@ -1,5 +1,11 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import Measurement from "./Measurement.js";
+
 export default function ClickedRecipe(props) {
+  const [show, setShow] = useState(false);
+  const [measure, setMeasure] = useState("metric");
+
   const navigate = useNavigate();
 
   if (!props.clickedRecipe) {
@@ -8,6 +14,12 @@ export default function ClickedRecipe(props) {
 
   return (
     <>
+      <Measurement
+        show={show}
+        handleClose={() => setShow(false)}
+        measure={measure}
+        setMeasure={setMeasure}
+      />
       <table className="clickedRecipe">
         <tbody>
           <tr>
@@ -49,13 +61,16 @@ export default function ClickedRecipe(props) {
                 <h4>Instruction:</h4>
                 <p>{props.clickedRecipe.strInstructions}</p>
               </section>
+              <button
+                onClick={() => [props.setClickedRecipe(null), navigate(`${props.page}`)]}
+              >
+                Back
+              </button>
+              <button onClick={() => setShow(true)}>Change measurement</button>
             </td>
           </tr>
         </tbody>
       </table>
-      <button onClick={() => [props.setClickedRecipe(null), navigate(`${props.page}`)]}>
-        Back
-      </button>
     </>
   );
 }
