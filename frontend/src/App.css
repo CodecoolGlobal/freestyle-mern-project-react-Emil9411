@@ -35,7 +35,7 @@ body {
 /* /recipes page */
 
 .recipesContainer {
-  max-width: 100vh;
+  min-width: 85vh;
   margin: 0 auto;
   padding: 20px;
 }
@@ -58,7 +58,7 @@ body {
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
-  width: calc(25% - 20px);
+  width: calc(20% - 20px);
   height: 450px;
   justify-content: center;
   color: black;
