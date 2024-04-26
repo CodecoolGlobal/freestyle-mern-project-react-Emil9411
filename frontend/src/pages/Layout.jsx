@@ -48,7 +48,7 @@ export default function Layout(props) {
             <Dropdown.Menu>
             {vegCategories.map(c => 
               <Link to= {`/category/${c}`}>
-                <Dropdown.Item onClick={() => navigate("/category/vegetarian")}>
+                <Dropdown.Item onClick={() => navigate(`/category/${c}`)}>
                   {capitalizeWords(c)}
                 </Dropdown.Item>
               </Link>)}
