@@ -4,7 +4,6 @@ import Measurement from "./Measurement.js";
 
 export default function ClickedRecipe(props) {
   const [show, setShow] = useState(false);
-  const [measure, setMeasure] = useState("metric");
 
   const navigate = useNavigate();
 
@@ -17,8 +16,6 @@ export default function ClickedRecipe(props) {
       <Measurement
         show={show}
         handleClose={() => setShow(false)}
-        measure={measure}
-        setMeasure={setMeasure}
       />
       <table className="clickedRecipe">
         <tbody>
