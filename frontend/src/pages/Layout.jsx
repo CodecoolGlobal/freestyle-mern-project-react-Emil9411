@@ -3,9 +3,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import Dropdown from "react-bootstrap/Dropdown";
 import { useNavigate } from "react-router-dom";
+import { capitalizeWords } from "../utility/capitalizeWords";
 
 export default function Layout(props) {
   const navigate = useNavigate();
+  const meatCategories = ["chicken", "pork", "beef", "lamb", "goat", "seafood"];
+  const vegCategories = ["vegetarian", "vegan"];
+  const mixedCategories = ["breakfast", "miscellaneous", "pasta", "dessert", "side", "starter"];
+
   return (
     <div>
       <nav id="navBar" className="navbar sticky-top navbar-expand-lg navbar-light">
@@ -23,43 +28,12 @@ export default function Layout(props) {
               Meat & Seafood
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Link to="/category/chicken">
-                <Dropdown.Item onClick={() => navigate("/category/chicken")}>
-                  Chicken
+            {meatCategories.map(c => 
+            <Link to= {`/category/${c}`}>
+                <Dropdown.Item onClick={() => navigate(`/category/${c}`)}>
+                  {capitalizeWords(c)}
                 </Dropdown.Item>
-              </Link>
-
-              <Link to="/category/pork">
-                <Dropdown.Item onClick={() => navigate("/category/pork")}>
-                  Pork
-                </Dropdown.Item>
-              </Link>
-
-              <Link to="category/beef">
-                <Dropdown.Item onClick={() => navigate("/category/beef")}>
-                  Beef
-                </Dropdown.Item>
-              </Link>
-
-              <Link to="category/lamb">
-                <Dropdown.Item onClick={() => navigate("/category/lamb")}>
-                  Lamb
-                </Dropdown.Item>
-              </Link>
-
-              <Link to="category/goat">
-                <Dropdown.Item onClick={() => navigate("/category/goat")}>
-                  Goat
-                </Dropdown.Item>
-              </Link>
-
-              <hr />
-
-              <Link to="category/seafood">
-                <Dropdown.Item onClick={() => navigate("/category/seafood")}>
-                  Seafood
-                </Dropdown.Item>
-              </Link>
+              </Link>)}
             </Dropdown.Menu>
           </Dropdown>
         </Link>
@@ -72,17 +46,12 @@ export default function Layout(props) {
               Vegetarian & Vegan
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Link to="/category/vegetarian">
+            {vegCategories.map(c => 
+              <Link to= {`/category/${c}`}>
                 <Dropdown.Item onClick={() => navigate("/category/vegetarian")}>
-                  Vegetarian
+                  {capitalizeWords(c)}
                 </Dropdown.Item>
-              </Link>
-
-              <Link to="/category/vegan">
-                <Dropdown.Item onClick={() => navigate("/category/vegan")}>
-                  Vegan
-                </Dropdown.Item>
-              </Link>
+              </Link>)}
             </Dropdown.Menu>
           </Dropdown>
         </Link>
@@ -95,41 +64,12 @@ export default function Layout(props) {
               Mixed Culinary Creations
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Link to="/category/breakfast">
-                <Dropdown.Item onClick={() => navigate("/category/breakfast")}>
-                  Breakfast
+              {mixedCategories.map(c => 
+              <Link to= {`/category/${c}`}>
+                <Dropdown.Item onClick={() => navigate(`/category/${c}`)}>
+                  {capitalizeWords(c)}
                 </Dropdown.Item>
-              </Link>
-
-              <Link to="/category/miscellaneous">
-                <Dropdown.Item onClick={() => navigate("/category/miscellaneous")}>
-                  Miscellaneous
-                </Dropdown.Item>
-              </Link>
-
-              <Link to="/category/pasta">
-                <Dropdown.Item onClick={() => navigate("/category/pasta")}>
-                  Pasta
-                </Dropdown.Item>
-              </Link>
-
-              <Link to="/category/dessert">
-                <Dropdown.Item onClick={() => navigate("/category/dessert")}>
-                  Dessert
-                </Dropdown.Item>
-              </Link>
-
-              <Link to="/category/side">
-                <Dropdown.Item onClick={() => navigate("/category/side")}>
-                  Side
-                </Dropdown.Item>
-              </Link>
-
-              <Link to="/category/starter">
-                <Dropdown.Item onClick={() => navigate("/category/starter")}>
-                  Starter
-                </Dropdown.Item>
-              </Link>
+              </Link>)} 
             </Dropdown.Menu>
           </Dropdown>
         </Link>
